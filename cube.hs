@@ -1,5 +1,5 @@
 data R = R Double Double Double Double deriving (Show)
-data P = P Double Double Double deriving (Show)
+data P = P Double Double Double deriving (Eq, Show)
 
 data Piece = Piece P P R deriving (Show)
 data Cube = Cube [Piece] deriving (Show)
@@ -10,6 +10,13 @@ cube = Cube [(Piece (P 0 0 0) (P 0 0 0) (R 0 0 0 0))]
 rotateFace :: Cube -> Char -> Int -> Cube
 rotateFace c 'F' 0 = c
 
+
+checkSolved :: Cube -> Bool
+checkSolved (Cube []) = True
+checkSolved (Cube ((Piece ps p r):pieces)) = ps == p && (checkSolved (Cube pieces))
+
+-- matrix multiply
+-- takes in a matrix mxn and a vector mx1 and multiplies them
 mm :: [P] -> P -> P
 mm [] _ = (P 0 0 0)
 mm ((P rx ry rz):ps) (P x y z) = ma (mm ps (P (x*rx) (y*ry) (z*rz))) (P x y z)
