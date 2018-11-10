@@ -1,4 +1,4 @@
-data R = R Double Double Double Double deriving (Show)
+data R = R Double Double Double Double deriving (Eq, Show)
 data P = P Double Double Double deriving (Eq, Show)
 
 data Piece = Piece P P R deriving (Show)
