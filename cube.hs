@@ -8,7 +8,9 @@ cube = Cube [(Piece (P 0 0 0) (P 0 0 0) (R 0 0 0 0))]
 
 --                    Face    Direction
 rotateFace :: Cube -> Char -> Int -> Cube
-rotateFace c 'F' 0 = c
+rotateFace (Cube pieces) face dir = (Cube (oldPieces ++ newPieces))
+    where oldPieces = (filter (not . isPartOfFace face) pieces)
+          newPieces = map (rotatePiece (faceToRotation face dir)) (filter (isPartOfFace face) pieces)
 
 rotatePiece :: [P] -> Piece -> Piece
 rotatePiece rotation (Piece s p r) = (Piece s (rotatePoint rotation p) r)
