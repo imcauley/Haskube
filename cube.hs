@@ -10,6 +10,10 @@ cube = Cube [(Piece (P 0 0 0) (P 0 0 0) (R 0 0 0 0))]
 rotateFace :: Cube -> Char -> Int -> Cube
 rotateFace c 'F' 0 = c
 
+rotatePiece :: [P] -> Piece -> Piece
+rotatePiece rotation (Piece s p r) = (Piece s (rotatePoint rotation p) r)
+
+
 rotatePoint :: [P] -> P -> P
 rotatePoint rot p = (P (rotated !! 0) (rotated !! 1) (rotated !! 2))
     where rotated = mm rot p
