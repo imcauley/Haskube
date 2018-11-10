@@ -34,9 +34,9 @@ checkSolved (Cube ((Piece ps p r):pieces)) = ps == p && (checkSolved (Cube piece
 
 -- matrix multiply
 -- takes in a matrix mxn and a vector mx1 and multiplies them
-mm :: [P] -> P -> P
-mm [] _ = (P 0 0 0)
-mm ((P rx ry rz):ps) (P x y z) = ma (mm ps (P (x*rx) (y*ry) (z*rz))) (P x y z)
+mm :: [P] -> P -> [Double]
+mm [] _ = []
+mm ((P rx ry rz):ps) (P x y z) = [rx*x + ry*y + rz*z] ++ (mm ps (P x y z))
 
 ma :: P -> P -> P
 ma (P x1 y1 z1) (P x2 y2 z2) = P (x1+x2) (y1+y2) (z1+z2)
