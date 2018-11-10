@@ -10,6 +10,13 @@ cube = Cube [(Piece (P 0 0 0) (P 0 0 0) (R 0 0 0 0))]
 rotateFace :: Cube -> Char -> Int -> Cube
 rotateFace c 'F' 0 = c
 
+isPartOfFace :: Char -> Piece -> Bool
+isPartOfFace 'R' (Piece _ (P x y z) _) = x == 1
+isPartOfFace 'L' (Piece _ (P x y z) _) = x == -1
+isPartOfFace 'U' (Piece _ (P x y z) _) = z == 1
+isPartOfFace 'D' (Piece _ (P x y z) _) = z == -1
+isPartOfFace 'B' (Piece _ (P x y z) _) = y == 1
+isPartOfFace 'F' (Piece _ (P x y z) _) = y == -1
 
 checkSolved :: Cube -> Bool
 checkSolved (Cube []) = True
