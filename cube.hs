@@ -10,6 +10,10 @@ cube = Cube [(Piece (P 0 0 0) (P 0 0 0) (R 0 0 0 0))]
 rotateFace :: Cube -> Char -> Int -> Cube
 rotateFace c 'F' 0 = c
 
+rotatePoint :: [P] -> P -> P
+rotatePoint rot p = (P (rotated !! 0) (rotated !! 1) (rotated !! 2))
+    where rotated = mm rot p
+
 isPartOfFace :: Char -> Piece -> Bool
 isPartOfFace 'R' (Piece _ (P x y z) _) = x == 1
 isPartOfFace 'L' (Piece _ (P x y z) _) = x == -1
