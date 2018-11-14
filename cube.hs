@@ -41,7 +41,9 @@ mm ((P rx ry rz):ps) (P x y z) = [rx*x + ry*y + rz*z] ++ (mm ps (P x y z))
 ma :: P -> P -> P
 ma (P x1 y1 z1) (P x2 y2 z2) = P (x1+x2) (y1+y2) (z1+z2)
 
-createRotationMatrix :: Char -> Double -> [P]
-createRotationMatrix 'X' t = [(P 1 0 0), (P 0 (cos t) (-(sin t))), (P 0 (sin t) (cos t))]
-createRotationMatrix 'Y' t = [(P (cos t) 0 (sin t)), (P 0 1 0), (P (-(sin t)) 0 (cos t))]
-createRotationMatrix 'Z' t = [(P (cos t) (-(sin t)) 0), (P (sin t) (cos t) 0), (P 0 0 1)]
+mq :: R -> R -> R
+mq (R n1 i1 j1 k1) (R n2 i2 j2 k2) = (R n i j k)
+    where n = (n1 * n2) - (i1 * i2) - (j1 * j2) - (k1 * k2)
+          i = (n1 * i2) + (n2 * i1) + (k2 * j1) - (k1 * j2)
+          j = (n1 * j2) + (n2 * j1) - (i1 * k2) + (k1 * i2)
+          k = (n1 * k2) + (n2 * k1) + (i1 * j2) - (i2 * j1)
