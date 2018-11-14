@@ -48,6 +48,9 @@ mq (R n1 i1 j1 k1) (R n2 i2 j2 k2) = (R n i j k)
           j = (n1 * j2) + (n2 * j1) - (i1 * k2) + (k1 * i2)
           k = (n1 * k2) + (n2 * k1) + (i1 * j2) - (i2 * j1)
 
+magq :: R -> Double
+magq (R n i j k) = n^2 + i^2 + j^2 + k^2
+
 faceToRotation :: Char -> Int -> [P]
 faceToRotation 'R' dir = rotationMatrix 'X' ((pi/2) * fromIntegral(dir))
 faceToRotation 'L' dir = rotationMatrix 'X' ((pi/2) * fromIntegral((-1)*dir))
