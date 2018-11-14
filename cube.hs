@@ -47,6 +47,15 @@ mq (R n1 i1 j1 k1) (R n2 i2 j2 k2) = (R n i j k)
           i = (n1 * i2) + (n2 * i1) + (k2 * j1) - (k1 * j2)
           j = (n1 * j2) + (n2 * j1) - (i1 * k2) + (k1 * i2)
           k = (n1 * k2) + (n2 * k1) + (i1 * j2) - (i2 * j1)
+
+faceToRotation :: Char -> Int -> [P]
+faceToRotation 'R' dir = rotationMatrix 'X' ((pi/2) * fromIntegral(dir))
+faceToRotation 'L' dir = rotationMatrix 'X' ((pi/2) * fromIntegral((-1)*dir))
+faceToRotation 'U' dir = rotationMatrix 'Z' ((pi/2) * fromIntegral(dir))
+faceToRotation 'D' dir = rotationMatrix 'Z' ((pi/2) * fromIntegral((-1)*dir))
+faceToRotation 'B' dir = rotationMatrix 'Y' ((pi/2) * fromIntegral(dir))
+faceToRotation 'F' dir = rotationMatrix 'Y' ((pi/2) * fromIntegral((-1)*dir))
+
 rotationMatrix :: Char -> Double -> [P]
 rotationMatrix 'X' t = [(P 1 0 0), (P 0 (cos t) (-(sin t))), (P 0 (sin t) (cos t))]
 rotationMatrix 'Y' t = [(P (cos t) 0 (sin t)), (P 0 1 0), (P (-(sin t)) 0 (cos t))]
