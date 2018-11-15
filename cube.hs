@@ -67,3 +67,8 @@ rotationMatrix :: Char -> Double -> [P]
 rotationMatrix 'X' t = [(P 1 0 0), (P 0 (cos t) (-(sin t))), (P 0 (sin t) (cos t))]
 rotationMatrix 'Y' t = [(P (cos t) 0 (sin t)), (P 0 1 0), (P (-(sin t)) 0 (cos t))]
 rotationMatrix 'Z' t = [(P (cos t) (-(sin t)) 0), (P (sin t) (cos t) 0), (P 0 0 1)]
+
+createRotationQuat :: Char -> Double -> R
+createRotationQuat 'X' t = R (cos (t/2)) (sin (t/2)) 0 0
+createRotationQuat 'Y' t = R (cos (t/2)) 0 (sin (t/2)) 0 
+createRotationQuat 'Z' t = R (cos (t/2)) 0 0 (sin (t/2))
