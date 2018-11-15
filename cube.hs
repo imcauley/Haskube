@@ -55,6 +55,10 @@ invq (R n i j k) = R (n/inv) (- (i/inv)) (- (j/inv)) (- (k/inv))
 magq :: R -> Double
 magq (R n i j k) = n^2 + i^2 + j^2 + k^2
 
+rotateQuaternion :: R -> Char -> R
+rotateQuaternion q dir = mq (mq r q) (invq r)
+    where r = createRotationQuat dir (pi/2)
+
 faceToRotation :: Char -> Int -> [P]
 faceToRotation 'R' dir = rotationMatrix 'X' ((pi/2) * fromIntegral(dir))
 faceToRotation 'L' dir = rotationMatrix 'X' ((pi/2) * fromIntegral((-1)*dir))
